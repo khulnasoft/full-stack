@@ -348,7 +348,7 @@ VUE_APP_ENV=staging
 
 ## Deployment
 
-You can deploy the stack to a Docker Swarm mode cluster with a main Traefik proxy, set up using the ideas from <a href="https://dockerswarm.rocks" target="_blank">DockerSwarm.rocks</a>, to get automatic HTTPS certificates, etc.
+You can deploy the stack to a Docker Swarm mode cluster with a main Traefik proxy, set up using the ideas from <a href="https://dockerswarm.khulnasoft.com" target="_blank">DockerSwarm</a>, to get automatic HTTPS certificates, etc.
 
 And you can use CI (continuous integration) systems to do it automatically.
 
@@ -407,30 +407,30 @@ services:
 
 If you add more volumes to your stack, you need to make sure you add the corresponding constraints to the services that use that named volume.
 
-Then you have to create those labels in some nodes in your Docker Swarm mode cluster. You can use `docker-auto-labels` to do it automatically.
+Then you have to create those labels in some nodes in your Docker Swarm mode cluster. You can use `auto-docker-labels` to do it automatically.
 
 
-#### `docker-auto-labels`
+#### `auto-docker-labels`
 
-You can use [`docker-auto-labels`](https://github.com/khulnasoft/docker-auto-labels) to automatically read the placement constraint labels in your Docker stack (Docker Compose file) and assign them to a random Docker node in your Swarm mode cluster if those labels don't exist yet.
+You can use [`auto-docker-labels`](https://github.com/khulnasoft/auto-docker-labels) to automatically read the placement constraint labels in your Docker stack (Docker Compose file) and assign them to a random Docker node in your Swarm mode cluster if those labels don't exist yet.
 
-To do that, you can install `docker-auto-labels`:
+To do that, you can install `auto-docker-labels`:
 
 ```bash
-pip install docker-auto-labels
+pip install auto-docker-labels
 ```
 
 And then run it passing your `docker-stack.yml` file as a parameter:
 
 ```bash
-docker-auto-labels docker-stack.yml
+auto-docker-labels docker-stack.yml
 ```
 
 You can run that command every time you deploy, right before deploying, as it doesn't modify anything if the required labels already exist.
 
 #### (Optionally) adding labels manually
 
-If you don't want to use `docker-auto-labels` or for any reason you want to manually assign the constraint labels to specific nodes in your Docker Swarm mode cluster, you can do the following:
+If you don't want to use `auto-docker-labels` or for any reason you want to manually assign the constraint labels to specific nodes in your Docker Swarm mode cluster, you can do the following:
 
 * First, connect via SSH to your Docker Swarm mode cluster.
 
